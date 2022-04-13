@@ -8,6 +8,8 @@ public class CraftingManager : MonoBehaviour
     private Item currentItem;
     public Image customCursor;
     public Slot[] craftingSlots;
+    public Item[] items;
+
 
     private void Update(){
         if(Input.GetMouseButtonUp(0)){
@@ -29,6 +31,11 @@ public class CraftingManager : MonoBehaviour
                 currentItem = null;
             }
         }
+
+        foreach(Item slot in items){
+            slot.getText().text = " " + slot.getAmount();
+        }
+        
     }
 
     public void OnMouseDownItem(Item item){
@@ -38,5 +45,6 @@ public class CraftingManager : MonoBehaviour
             customCursor.sprite = currentItem.GetComponent<Image>().sprite;
         }
     }
+
 
 }

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16dc75ed82da8e744ad9747c798ae552, type: 3}
-  m_Name: New Crafting Recipe
+  m_Name: Door
   m_EditorClassIdentifier: 
   Materials:
   - Item: {fileID: 0}
-    Amount: 4
+    Amount: 0
   Results: []

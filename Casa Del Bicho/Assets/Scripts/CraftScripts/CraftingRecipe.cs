@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public struct ItemAmount
 {
-    public GameObject Item;
+    public Item Item;
     [Range(1, 10)]
     public int Amount;
 }

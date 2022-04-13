@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CraftMenu : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
     public static bool GamePaused = false;
-    public GameObject MenuUI, CraftUI, GatherUI;
+    public GameObject pauseMenuUI;
     public GameObject CamController;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I)){
+        if (Input.GetKeyDown(KeyCode.Escape)){
             if(!GamePaused){
                 Pause();
             }
@@ -20,17 +20,18 @@ public class CraftMenu : MonoBehaviour
             }
         }
     }
-    public void Resume(){
-        MenuUI.SetActive(false);
+
+    private void Resume(){
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
         CamController.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
-        
-        Time.timeScale = 1f;
+
         GamePaused = false;
     }
 
-    public void Pause(){
-        MenuUI.SetActive(true);
+    private void Pause(){
+        pauseMenuUI.SetActive(true);
         CamController.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -39,13 +40,11 @@ public class CraftMenu : MonoBehaviour
         GamePaused = true;
     }
 
-    public void GoToGatherScreen(){
-        CraftUI.SetActive(false);
-        GatherUI.SetActive(true);
+    public void QuitGame(){
+        Application.Quit();
     }
 
-    public void GoToCraftScreen(){
-        GatherUI.SetActive(false);
-        CraftUI.SetActive(true);
+    public bool IsGamePaused(){
+        return GamePaused;
     }
 }

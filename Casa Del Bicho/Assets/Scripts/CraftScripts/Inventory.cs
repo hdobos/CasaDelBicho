@@ -19,22 +19,22 @@ public class Inventory : MonoBehaviour, IItemContainer
         
     }
 
-    public bool ContainsItem(GameObject obj){
+    public bool ContainsItem(Item item){
         return false;
     }
 
-    public bool RemoveItem(GameObject obj){
+    public bool RemoveItem(Item item){
         return false;
     }
 
-    public bool AddItem(GameObject obj){
+    public bool AddItem(Item item){
         return false;
     }
 
     public bool IsFull(){
         return false;
     }
-    public int ItemCount(GameObject obj){
+    public int ItemCount(Item item){
         return 0;
     }
 }

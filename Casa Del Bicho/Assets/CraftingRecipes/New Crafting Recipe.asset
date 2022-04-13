@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16dc75ed82da8e744ad9747c798ae552, type: 3}
   m_Name: New Crafting Recipe
   m_EditorClassIdentifier: 
-  Materials: []
+  Materials:
+  - Item: {fileID: 0}
+    Amount: 4
   Results: []

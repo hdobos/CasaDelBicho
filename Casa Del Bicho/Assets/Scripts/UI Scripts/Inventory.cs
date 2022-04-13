@@ -34,4 +34,7 @@ public class Inventory : MonoBehaviour, IItemContainer
     public bool IsFull(){
         return false;
     }
+    public int ItemCount(GameObject obj){
+        return 0;
+    }
 }

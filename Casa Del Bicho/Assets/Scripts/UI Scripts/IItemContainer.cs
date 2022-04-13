@@ -8,4 +8,5 @@ public interface IItemContainer
     bool RemoveItem(GameObject obj);
     bool AddItem(GameObject obj);
     bool IsFull();
+    int ItemCount(GameObject obj);
 }

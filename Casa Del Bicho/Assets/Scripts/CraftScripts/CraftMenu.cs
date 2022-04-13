@@ -28,7 +28,7 @@ public class CraftMenu : MonoBehaviour
     }
     private void Resume(){
         MenuUI.SetActive(false);
-        CamController.SetActive(true);
+        CamController.GetComponent<FirstPersonLook>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         
         Time.timeScale = 1f;
@@ -37,7 +37,7 @@ public class CraftMenu : MonoBehaviour
 
     private void Pause(){
         MenuUI.SetActive(true);
-        CamController.SetActive(false);
+        CamController.GetComponent<FirstPersonLook>().enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 

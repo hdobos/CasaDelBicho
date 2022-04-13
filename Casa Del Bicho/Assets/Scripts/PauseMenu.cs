@@ -24,7 +24,7 @@ public class PauseMenu : MonoBehaviour
     private void Resume(){
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        CamController.SetActive(true);
+        CamController.GetComponent<FirstPersonLook>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
 
         GamePaused = false;
@@ -32,7 +32,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Pause(){
         pauseMenuUI.SetActive(true);
-        CamController.SetActive(false);
+        CamController.GetComponent<FirstPersonLook>().enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 

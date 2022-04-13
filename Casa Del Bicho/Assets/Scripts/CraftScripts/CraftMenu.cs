@@ -8,6 +8,7 @@ public class CraftMenu : MonoBehaviour
     public GameObject MenuUI, CraftUI, GatherUI;
     public GameObject CamController, pauseMenu;
     public PauseMenu p;
+    public GameObject crossHatch;
 
     void Start()
     {
@@ -30,6 +31,9 @@ public class CraftMenu : MonoBehaviour
         MenuUI.SetActive(false);
         CamController.GetComponent<FirstPersonLook>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        crossHatch.SetActive(true);
         
         Time.timeScale = 1f;
         Paused = false;
@@ -40,6 +44,8 @@ public class CraftMenu : MonoBehaviour
         CamController.GetComponent<FirstPersonLook>().enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        crossHatch.SetActive(false);
 
         Time.timeScale = 0f;
         Paused = true;

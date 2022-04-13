@@ -7,6 +7,7 @@ public class PauseMenu : MonoBehaviour
     public static bool GamePaused = false;
     public GameObject pauseMenuUI;
     public GameObject CamController;
+    public GameObject crossHatch;
 
     // Update is called once per frame
     void Update()
@@ -26,6 +27,9 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         CamController.GetComponent<FirstPersonLook>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        crossHatch.SetActive(true);
 
         GamePaused = false;
     }
@@ -35,6 +39,8 @@ public class PauseMenu : MonoBehaviour
         CamController.GetComponent<FirstPersonLook>().enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        crossHatch.SetActive(false);
 
         Time.timeScale = 0f;
         GamePaused = true;

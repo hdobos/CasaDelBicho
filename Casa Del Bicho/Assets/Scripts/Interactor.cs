@@ -38,7 +38,6 @@ public class Interactor : MonoBehaviour
 
                 if(Input.GetKeyDown(KeyCode.F)){
                     interactable.onInteract.Invoke();
-                    interactable.item.Amount++;
                 }
             }
         }

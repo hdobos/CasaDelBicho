@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.3391076, g: 0.37088078, b: 0.39035895, a: 1}
+  m_IndirectSpecularColor: {r: 0.33911175, g: 0.3708836, b: 0.3903603, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1621,6 +1621,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 966809713}
     m_Modifications:
+    - target: {fileID: 100138, guid: bc600cce01eb57a409f4e69025868a2c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 100140, guid: bc600cce01eb57a409f4e69025868a2c, type: 3}
       propertyPath: m_Name
       value: spider_myOldOne
@@ -7752,18 +7756,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 690427322}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -571.5269}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 647259255}
   - {fileID: 361926267}
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_Father: {fileID: 1941577066}
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -484.99313, y: 292.6117}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &690427324
@@ -9270,7 +9274,7 @@ Transform:
   - {fileID: 548015209}
   - {fileID: 41544102}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &816502735
 PrefabInstance:
@@ -9807,7 +9811,7 @@ RectTransform:
   m_Children:
   - {fileID: 1609790542}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12054,7 +12058,11 @@ MonoBehaviour:
   dialogue:
     name: CAM
     sentences:
-    - egqegqgadfaefqwefwe
+    - "I don't know! I was almost finished \rbuilding my hut when suddenly it \rturned
+      to pieces.\r"
+    - "I can but I need your help first. My \rhome is in ruin and I need to rebuild
+      \rat once before nightfall. The wood is \rnow nothing more than splinters and
+      \rthe sticks blocking the path are too \rlarge to use. Can you find me 1? "
 --- !u!64 &1150999619
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12096,7 +12104,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  interactIcon: {fileID: 0}
+  interactIcon: {fileID: 7482667652216324306, guid: ecbd887b1a0a4aa4896b515164b6c262, type: 3}
   ID: 0
 --- !u!1001 &1157054524
 PrefabInstance:
@@ -15925,20 +15933,60 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 690427322}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1598904104}
+        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
+        m_MethodName: TriggerDialogue
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
-  interactIcon: {fileID: 0}
-  ID: 0
+  interactIcon: {fileID: 7482667652216324306, guid: ecbd887b1a0a4aa4896b515164b6c262, type: 3}
+  ID: 1
+--- !u!114 &1598904104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598904101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a743f67a530a8e4bac6ee92967a9b86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    name: ARACHNE
+    sentences:
+    - "Dale! I am so glad you are here! What \r\nterrible misfortune has befallen
+      us. \r\n(weeps).\r"
+    - "My children are due to hatch any day \r\nnow! My exquisite home that I crafted
+      \rwith my finest silk is now no place \rfor my darling children to be brought
+      \rup in.\r"
+    - I need you to make me a bassinet and a sotrage chest for my spiderlings. Here's
+      what you need to make them...
+    - I need you to make me a bassinet and a sotrage chest for my spiderlings. Here's
+      what you need to make them...
+    - " Bassinet (1 half log, 1 sticks, 1 \r\n leaf)\r\n\n Storage chest (1 acorn,
+      2 tree sap)"
+--- !u!64 &1598904105
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598904101}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: bc600cce01eb57a409f4e69025868a2c, type: 3}
 --- !u!4 &1599584287 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8781bcf1d47a17841b5584744a7155b4, type: 3}
@@ -16278,7 +16326,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1625073275 stripped
 Transform:
@@ -18404,7 +18452,7 @@ Transform:
   - {fileID: 948366968}
   - {fileID: 660528248}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1941577065
 GameObject:
@@ -18450,8 +18498,9 @@ Transform:
   - {fileID: 335205287}
   - {fileID: 1182130297}
   - {fileID: 135612467}
+  - {fileID: 690427323}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1942479518
 GameObject:

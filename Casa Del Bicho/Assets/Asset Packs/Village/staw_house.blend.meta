@@ -3,7 +3,42 @@ guid: 8781bcf1d47a17841b5584744a7155b4
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 683f3ffd1625cdc4eb8c18aa1e60a07f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 1eaed1097e634eb48bcf4fa2bbb38b96, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: ac8a1be99670734408527a805e537976, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: 5581d4e4d592e9c4cb9b3d22ee40b212, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cow
+    second: {fileID: 2100000, guid: 71a3702afcbac084fa4a0dc693ebd4c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: nutrition label
+    second: {fileID: 2100000, guid: 570efbbf262ffa74a8ad0722b7df7471, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: nutrition label.001
+    second: {fileID: 2100000, guid: b1b22001546d3e0419bbcadd9accf67b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

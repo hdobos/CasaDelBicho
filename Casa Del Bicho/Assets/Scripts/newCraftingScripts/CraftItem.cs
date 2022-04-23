@@ -65,8 +65,67 @@ public class CraftItem : MonoBehaviour
         slotTemplate.container.raycastTarget = slotTemplate.item.raycastTarget = slotTemplate.count.raycastTarget = false;
     }
 
+    
+    void Update()
+    {
+        //moving items around w mouse
+        if(selectedItemSlot != null){
+            if(!slotTemplate.gameObject.activeSelf){
+                slotTemplate.gameObject.SetActive(true);
+                slotTemplate.container.enabled = false;
+
+                //copy item values into slot tempalte
+                slotTemplate.count.color = selectedItemSlot.slot.count.color;
+                slotTemplate.item.sprite = selectedItemSlot.slot.item.sprite;
+                slotTemplate.item.color = selectedItemSlot.slot.item.color;
+            }
+
+            //making template slot follow mouse
+            slotTemplate.container.rectTransform.position = Input.mousePosition;
+
+            //update item count
+            slotTemplate.count.text = selectedItemSlot.slot.count.text;
+            slotTemplate.count.enabled = selectedItemSlot.slot.count.enabled;
+        }
+
+        else{
+            if(slotTemplate.gameObject.activeSelf){
+                slotTemplate.gameObject.SetActive(false);
+            }
+        }
+    }
+
+
+
+    
+    void InitializeSlotTable(RectTransform container, SlotTemplate tempSlotTemplate, SlotContainer[] slots, int margin, int tempTableID)
+    {
+        int resetIndex = 0;
+        int tempRow = 0;
+
+        for(int i = 0; i < slots.Length; i++){
+            if(slots[i] == null){
+                slots[i] = new SlotContainer();
+            }
+            GameObject newSlot = Instantiate(tempSlotTemplate.gameObject, container.transform);
+            slots[i].slot = newSlot.GetComponent<SlotTemplate>();
+            slots[i].slot.gameObject.SetActive(true);
+            slots[i].tableID = tempTableID;
+
+            float tempX = (int)((margin + slots[i].slot.container.rectTransform.sizeDelta.x) * (i - resetIndex));
+            if( (tempX + slots[i].slot.container.rectTransform.sizeDelta.x + margin) > (container.rect.width) ){
+                resetIndex = i;
+                tempRow++;
+                tempX = 0;
+            }
+            slots[i].slot.container.rectTransform.anchoredPosition = new Vector2(margin + tempX, -margin - ( (margin + slots[i].slot.container.rectTransform.sizeDelta.y) * tempRow));
+        }
+    }
+
+
+
     //updates table UI
-    public void UpdateItems(SlotContainer[] slots)
+    void UpdateItems(SlotContainer[] slots)
     {
         for(int i = 0; i < slots.Length; i++){
             _Item slotItem = FindItem(slots[i].itemSprite);
@@ -97,8 +156,10 @@ public class CraftItem : MonoBehaviour
         }
     }
 
+
+
     //finds item from the items list using the sprite as a reference
-    public _Item FindItem(Sprite sprite)
+    _Item FindItem(Sprite sprite)
     {
         if(!sprite){
             return null;
@@ -112,9 +173,11 @@ public class CraftItem : MonoBehaviour
 
         return null;
     }
+    
+
 
     //finds item from items list using recipe as reference
-    public _Item FindItem(string recipe)
+    _Item FindItem(string recipe)
     {
         if(recipe == ""){
             return null;
@@ -128,6 +191,33 @@ public class CraftItem : MonoBehaviour
 
         return null;
     }
+
+
+    SlotContainer GetClickedSlot()
+    {
+        for(int i = 0; i < inventorySlots.Length; i++){
+            if(inventorySlots[i].slot.hasClicked){
+                inventorySlots[i].slot.hasClicked = false;
+                return inventorySlots[i];
+            }
+        }
+
+        for(int i = 0; i < craftingSlots.Length; i++){
+            if(craftingSlots[i].slot.hasClicked){
+                craftingSlots[i].slot.hasClicked = false;
+                return craftingSlots[i];
+            }
+        }
+
+        if(resultSlot.slot.hasClicked){
+            resultSlot.slot.hasClicked = false;
+            return resultSlot;
+        }
+
+        return null;
+    }
+
+
 
     public void ClickEventRecheck()
     {
@@ -246,55 +336,10 @@ public class CraftItem : MonoBehaviour
         }
     }
 
-    public void InitializeSlotTable(RectTransform container, SlotTemplate tempSlotTemplate, SlotContainer[] slots, int margin, int tempTableID)
-    {
-        int resetIndex = 0;
-        int tempRow = 0;
 
-        for(int i = 0; i < slots.Length; i++){
-            if(slots[i] == null){
-                slots[i] = new SlotContainer();
-            }
-            GameObject newSlot = Instantiate(tempSlotTemplate.gameObject, container.transform);
-            slots[i].slot = newSlot.GetComponent<SlotTemplate>();
-            slots[i].slot.gameObject.SetActive(true);
-            slots[i].tableID = tempTableID;
 
-            float tempX = (int)((margin + slots[i].slot.container.rectTransform.sizeDelta.x) * (i - resetIndex));
-            if( (tempX + slots[i].slot.container.rectTransform.sizeDelta.x + margin) > (container.rect.width) ){
-                resetIndex = i;
-                tempRow++;
-                tempX = 0;
-            }
-            slots[i].slot.container.rectTransform.anchoredPosition = new Vector2(margin + tempX, -margin - ( (margin + slots[i].slot.container.rectTransform.sizeDelta.y) * tempRow));
-        }
-    }
 
-    public SlotContainer GetClickedSlot()
-    {
-        for(int i = 0; i < inventorySlots.Length; i++){
-            if(inventorySlots[i].slot.hasClicked){
-                inventorySlots[i].slot.hasClicked = false;
-                return inventorySlots[i];
-            }
-        }
-
-        for(int i = 0; i < craftingSlots.Length; i++){
-            if(craftingSlots[i].slot.hasClicked){
-                craftingSlots[i].slot.hasClicked = false;
-                return craftingSlots[i];
-            }
-        }
-
-        if(resultSlot.slot.hasClicked){
-            resultSlot.slot.hasClicked = false;
-            return resultSlot;
-        }
-
-        return null;
-    }
-
-    public void PerformCrafting()
+    void PerformCrafting()
     {
         string[] itemRecipe = new string[craftingSlots.Length];
 
@@ -337,33 +382,31 @@ public class CraftItem : MonoBehaviour
         }
     }
 
-    void Update()
+
+    //adds item to inventory
+    public void AddItem(GameObject obj)
     {
-        //moving items around w mouse
-        if(selectedItemSlot != null){
-            if(!slotTemplate.gameObject.activeSelf){
-                slotTemplate.gameObject.SetActive(true);
-                slotTemplate.container.enabled = false;
-
-                //copy item values into slot tempalte
-                slotTemplate.count.color = selectedItemSlot.slot.count.color;
-                slotTemplate.item.sprite = selectedItemSlot.slot.item.sprite;
-                slotTemplate.item.color = selectedItemSlot.slot.item.color;
+        //if there is space inside the inventorySlots array
+        for(int i = 0; i < inventorySlots.Length; i++){
+            //if it already exists in inventorySlots
+            if(inventorySlots[i].itemSprite == obj.GetComponent<SpriteMask>().sprite){
+                inventorySlots[i].itemCount++;
+                UpdateItems(inventorySlots);
+                obj.SetActive(false);
+                return;
             }
-
-            //making template slot follow mouse
-            slotTemplate.container.rectTransform.position = Input.mousePosition;
-
-            //update item count
-            slotTemplate.count.text = selectedItemSlot.slot.count.text;
-            slotTemplate.count.enabled = selectedItemSlot.slot.count.enabled;
-        }
-
-        else{
-            if(slotTemplate.gameObject.activeSelf){
-                slotTemplate.gameObject.SetActive(false);
+            //if it does not exist in inventorySlots
+            else if(inventorySlots[i].itemSprite == null){
+                inventorySlots[i].itemSprite = obj.GetComponent<SpriteMask>().sprite;
+                inventorySlots[i].itemCount = 1;
+                UpdateItems(inventorySlots);
+                obj.SetActive(false);
+                return;
             }
         }
+
+        //if there is no room in inventory slots (?? will we have enough items for this to ever happen?)
+        
     }
 
 }

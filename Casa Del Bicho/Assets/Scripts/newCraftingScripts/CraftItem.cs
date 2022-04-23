@@ -13,35 +13,8 @@ public class CraftItem : MonoBehaviour
     public SlotTemplate resultSlotTemplate;
 
 
-    [System.Serializable]
-    public class SlotContainer
-    {
-        public Sprite itemSprite; //sprite of item inside slot
-        public int itemCount; //number of items inside slot
-
-        [HideInInspector]
-        public int tableID;
-
-        [HideInInspector]
-        public SlotTemplate slot;
-    }
-
-
-    [System.Serializable]
-    public class _Item
-    {
-      public Sprite itemSprite; //item sprite
-      public bool stackable = false; //can item be stacked
-      public string craftingRecipe; //crafting recipes separated by commas
-
-    }
-
-    
-
-
-
     public SlotContainer[] inventorySlots;
-    SlotContainer[] craftingSlots = new SlotContainer[9]; //array of all the available crafting slots -> change to 3 once u understand this code
+    SlotContainer[] craftingSlots = new SlotContainer[3]; //array of all the available crafting slots -> change to 3 once u understand this code
     SlotContainer resultSlot = new SlotContainer(); //only one results slot
     
     public _Item[] items; //array of all available items
@@ -52,13 +25,6 @@ public class CraftItem : MonoBehaviour
     int resultTableID = -1; //ID of table where items are taken from
 
     ColorBlock defaultButtonColors;
-
-    //used to call methods from respective classes
-    // [HideInInspector]
-    // public _Item itemController;
-    
-    // [HideInInspector]
-    // public SlotContainer slotController;
 
     void Start()
     {

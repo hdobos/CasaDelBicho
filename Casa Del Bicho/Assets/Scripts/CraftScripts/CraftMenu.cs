@@ -5,7 +5,7 @@ using UnityEngine;
 public class CraftMenu : MonoBehaviour
 {
     public static bool Paused = false;
-    public GameObject MenuUI, CraftUI, GatherUI;
+    public GameObject MenuUI;//, CraftUI, GatherUI;
     public GameObject CamController, pauseMenu;
     public PauseMenu p;
     public GameObject crossHatch;
@@ -51,13 +51,13 @@ public class CraftMenu : MonoBehaviour
         Paused = true;
     }
 
-    public void GoToGatherScreen(){
-        CraftUI.SetActive(false);
-        GatherUI.SetActive(true);
-    }
+    // public void GoToGatherScreen(){
+    //     CraftUI.SetActive(false);
+    //     GatherUI.SetActive(true);
+    // }
 
-    public void GoToCraftScreen(){
-        GatherUI.SetActive(false);
-        CraftUI.SetActive(true);
-    }
+    // public void GoToCraftScreen(){
+    //     GatherUI.SetActive(false);
+    //     CraftUI.SetActive(true);
+    // }
 }

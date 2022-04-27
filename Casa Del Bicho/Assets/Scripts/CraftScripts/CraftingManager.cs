@@ -8,7 +8,10 @@ public class CraftingManager : MonoBehaviour
     private Item currentItem;
     public Image customCursor;
     public Slot[] craftingSlots;
+
     public Slot[] inventory;
+    public bool[] isFull;
+
     public Item[] items;
     public Sprite[] Results;
 
@@ -44,6 +47,24 @@ public class CraftingManager : MonoBehaviour
             customCursor.gameObject.SetActive(true);
             customCursor.sprite = currentItem.GetComponent<Image>().sprite;
             
+        }
+    }
+
+    public void AddItem(Item item){
+        for(int i = 0; i < inventory.Length; i++){
+            if(isFull[i] == false){
+
+                foreach(Item n in items){
+                    if(n.GetComponent<Image>().sprite == item.GetComponent<SpriteMask>().sprite){
+                        inventory[i].item = n;
+                        inventory[i].GetComponent<Image>().sprite = n.GetComponent<Image>().sprite;
+                        isFull[i] = true;
+                        break;
+                    }
+                }
+
+                break;
+            }
         }
     }
 

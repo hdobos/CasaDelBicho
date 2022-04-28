@@ -7,6 +7,7 @@ public class DialogueManager : MonoBehaviour
 {
     public GameObject gameobject;
     public GameObject CamController, crossHatch;
+    StateManager stateManager;
     private Queue<string> sentences;
 
     public Text nameText;
@@ -18,7 +19,8 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-    public void StartDialogue(Dialogue d){
+    public void StartDialogue(Dialogue d)
+    {
         gameobject.SetActive(true);
         CamController.GetComponent<FirstPersonLook>().enabled = false;
         Cursor.lockState = CursorLockMode.None;
@@ -27,17 +29,19 @@ public class DialogueManager : MonoBehaviour
         crossHatch.SetActive(false);
 
         nameText.text = d.name;
-        
         sentences.Clear();
 
-        foreach(string sentence in d.sentences){
-            sentences.Enqueue(sentence);
+        foreach(Sentence s in d.sentences){
+            if(s.active == true){
+                sentences.Enqueue(s.sentence);
+            }
         }
 
         DisplayNextSentence();
     }
 
-    public void DisplayNextSentence(){
+    public void DisplayNextSentence()
+    {
         if(sentences.Count == 0){
             EndDialogue();
             return;
@@ -47,7 +51,15 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = sentence;
     }
 
-    void EndDialogue(){
+    public void ActivateDialogue(Dialogue d)
+    {
+        foreach(Sentence s in d.sentences){
+            s.active = !s.active;
+        }
+    }
+
+    void EndDialogue()
+    {
         gameobject.SetActive(false);
         CamController.GetComponent<FirstPersonLook>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;

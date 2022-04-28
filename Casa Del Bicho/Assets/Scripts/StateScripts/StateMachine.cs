@@ -6,7 +6,7 @@ public class StateMachine : MonoBehaviour
 {
     public State[] items;
     public State[] results;
-    bool firstquest;
+    bool firstquest = false;
 
     State getState(string name)
     {
@@ -21,17 +21,16 @@ public class StateMachine : MonoBehaviour
 
     void FirstQuest()
     {
-        foreach(State state in items){
-            if(state.name == "FirstQuest" && !state.state){
-                break;
-            }
-            else{
+
+
+
+        if (items[0].state && items[1].state && items[2].state){
                 State s = getState("Villager");
                 s.GetComponent<DialogueTrigger>().ChangeDialogue();
                 GameObject.FindGameObjectWithTag("Blocked").SetActive(false);
                 firstquest = true;
             }
-        }
+        
     }
 
     void Update()

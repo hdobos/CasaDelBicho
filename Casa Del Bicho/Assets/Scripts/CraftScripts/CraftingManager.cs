@@ -8,13 +8,17 @@ public class CraftingManager : MonoBehaviour
     private Item currentItem;
     public Image customCursor;
     public Slot[] craftingSlots;
+
+    public Slot[] inventory;
+    public bool[] isFull;
+
     public Item[] items;
     public Sprite[] Results;
 
 
     private void Update(){
         if(Input.GetMouseButtonUp(0)){
-            if(currentItem != null && currentItem.getAmount() > 0){
+            if(currentItem != null){
                 customCursor.gameObject.SetActive(false);
                 Slot nearestSlot = null;
                 float shortestDistance = float.MaxValue;
@@ -34,19 +38,32 @@ public class CraftingManager : MonoBehaviour
                 currentItem = null;
             }
         }
-
-        foreach(Item slot in items){
-            slot.getText().text = " " + slot.getAmount();
-        }
         
     }
 
     public void OnMouseDownItem(Item item){
         if(currentItem == null){
             currentItem = item;
-            if(currentItem.getAmount() > 0){
-                customCursor.gameObject.SetActive(true);
-                customCursor.sprite = currentItem.GetComponent<Image>().sprite;
+            customCursor.gameObject.SetActive(true);
+            customCursor.sprite = currentItem.GetComponent<Image>().sprite;
+            
+        }
+    }
+
+    public void AddItem(Item item){
+        for(int i = 0; i < inventory.Length; i++){
+            if(isFull[i] == false){
+
+                foreach(Item n in items){
+                    if(n.GetComponent<Image>().sprite == item.GetComponent<SpriteMask>().sprite){
+                        inventory[i].item = n;
+                        inventory[i].GetComponent<Image>().sprite = n.GetComponent<Image>().sprite;
+                        isFull[i] = true;
+                        break;
+                    }
+                }
+
+                break;
             }
         }
     }

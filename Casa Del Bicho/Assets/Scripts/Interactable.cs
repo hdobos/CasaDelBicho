@@ -7,17 +7,18 @@ public class Interactable : MonoBehaviour
 {
     public UnityEvent onInteract;
     public Sprite interactIcon;
-    public Item item;
-    public int ID;
+    
+    private static int totalIDs = 0;
+    private int ID;
+    
     // Start is called before the first frame update
     void Start()
     {
-        ID = Random.Range(0, 999999);
+        ID = totalIDs;
+        totalIDs++;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public int GetID(){
+        return ID;
     }
 }

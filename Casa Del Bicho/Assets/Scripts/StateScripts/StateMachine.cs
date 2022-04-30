@@ -4,38 +4,79 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    public State[] items;
-    public State[] results;
-    bool firstquest = false;
+    public State[] items; //list of items that player needs to have
+    public State villager;
+    bool itemState = false;
 
-    State getState(string name)
+
+    bool CheckItemState()
     {
-        foreach(State s in results){
-            if(s.name == name){
-                return s;
+         foreach(State s in items){
+            if(!s.state){
+                return false;
             }
         }
-
-        return null;
+        return true;
     }
 
-    void FirstQuest()
+    void RemoveItems()
     {
-
-
-
-        if (items[0].state && items[1].state && items[2].state){
-                State s = getState("Villager");
-                s.GetComponent<DialogueTrigger>().ChangeDialogue();
-                GameObject.FindGameObjectWithTag("Blocked").SetActive(false);
-                firstquest = true;
+        foreach(State s in items){
+            if(s.state){
+                FindObjectOfType<CraftItem>().RemoveItem(s);
             }
-        
+        }
+    }
+
+    public void Metalon()
+    {
+        foreach(State s in items){
+            if(!s.state){
+                break;
+            }
+            else if(!villager.state){
+                RemoveItems();
+                GameObject.FindGameObjectWithTag("Blocked").SetActive(false);
+                villager.state = true;
+                break;
+            }
+        }
+    }
+
+    public void Tiger()
+    {
+        State s = items[0];
+        //if the player has the item
+        if(s.state){
+            RemoveItems();
+        }
+    }
+
+    public void Spider()
+    {
+        State s = items[0];
+        if(s.state){
+            RemoveItems();
+        }
     }
 
     void Update()
     {
-        if(!firstquest) FirstQuest();
+        if(villager.name == "Metalon" && CheckItemState() && !itemState){
+            villager.GetComponent<DialogueTrigger>().ChangeDialogue();
+            itemState = true;
+        }
+
+        if(villager.name == "Tiger" && items[0].state && !villager.state){
+            villager.GetComponent<DialogueTrigger>().ChangeDialogue();
+            villager.state = true;
+        }
+
+        if(villager.name == "Spider" && items[0].state && !villager.state){
+            villager.GetComponent<DialogueTrigger>().ChangeDialogue();
+            villager.state = true;
+        }
+      
     }
 
 }

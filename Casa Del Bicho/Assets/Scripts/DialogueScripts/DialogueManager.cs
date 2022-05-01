@@ -30,8 +30,10 @@ public class DialogueManager : MonoBehaviour
         
         sentences.Clear();
 
-        foreach(string sentence in d.sentences){
-            sentences.Enqueue(sentence);
+        foreach(Sentence s in d.sentences){
+            if(s.active){
+                sentences.Enqueue(s.sentence);
+            }
         }
 
         DisplayNextSentence();
@@ -45,6 +47,14 @@ public class DialogueManager : MonoBehaviour
 
         string sentence = sentences.Dequeue();
         dialogueText.text = sentence;
+    }
+
+    public void ActivateDialogue(Dialogue d)
+    {
+        foreach(Sentence s in d.sentences)
+        {
+            s.active = !s.active;
+        }
     }
 
     void EndDialogue(){

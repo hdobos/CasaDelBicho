@@ -370,6 +370,7 @@ public class CraftItem : MonoBehaviour
 
             resultSlot.itemSprite = craftedItem.itemSprite;
             resultSlot.itemCount = 1;
+            craftedItem.state.state = true;
 
             UpdateItems(craftingSlots);
             UpdateItems(new SlotContainer[] {resultSlot});
@@ -389,7 +390,7 @@ public class CraftItem : MonoBehaviour
         //if there is space inside the inventorySlots array
         for(int i = 0; i < inventorySlots.Length; i++){
             //if it already exists in inventorySlots
-            if(inventorySlots[i].itemSprite == obj.GetComponent<SpriteMask>().sprite){
+            if(inventorySlots[i].itemSprite == obj.GetComponent<Sprite_3D>().sprite){
                 inventorySlots[i].itemCount++;
                 UpdateItems(inventorySlots);
                 obj.SetActive(false);
@@ -397,7 +398,7 @@ public class CraftItem : MonoBehaviour
             }
             //if it does not exist in inventorySlots
             else if(inventorySlots[i].itemSprite == null){
-                inventorySlots[i].itemSprite = obj.GetComponent<SpriteMask>().sprite;
+                inventorySlots[i].itemSprite = obj.GetComponent<Sprite_3D>().sprite;
                 inventorySlots[i].itemCount = 1;
                 UpdateItems(inventorySlots);
                 obj.SetActive(false);
@@ -407,6 +408,21 @@ public class CraftItem : MonoBehaviour
 
         //if there is no room in inventory slots (?? will we have enough items for this to ever happen?)
         
+    }
+
+    public void RemoveItem(State state)
+    {
+        Sprite state_sprite = state.GetComponent<Sprite_3D>().sprite;
+        for(int i = 0; i < inventorySlots.Length; i++){
+            if(inventorySlots[i].itemSprite == state_sprite){
+                inventorySlots[i].itemCount--;
+                if(inventorySlots[i].itemCount <= 0){
+                    inventorySlots[i].itemSprite = null;
+                }
+                UpdateItems(inventorySlots);
+                return;
+            }
+        }
     }
 
 }

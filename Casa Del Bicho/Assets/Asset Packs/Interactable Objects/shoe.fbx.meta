@@ -3,7 +3,27 @@ guid: 5fc83b380f41316469db842c80830bdc
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 1571d5f9749288a41bf0517fd50df02a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: 10011a8d5c9471b4385671bb450c9d31, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.016
+    second: {fileID: 2100000, guid: bd482149d9556e74d9a250b200f16153, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: depositphotos_329901582-stock-illustration-vector-cartoon-beige
+    second: {fileID: 2100000, guid: 73c039e3572dc34478ba8c433991ae19, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

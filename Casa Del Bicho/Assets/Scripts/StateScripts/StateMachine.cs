@@ -43,16 +43,31 @@ public class StateMachine : MonoBehaviour
         }
     }
 
-    public void Tiger()
-    {
-        State s = items[0];
-        //if the player has the item
-        if(s.state){
-            RemoveItems();
-        }
-    }
+    // public void Tiger()
+    // {
+    //     State s = items[0];
+    //     if(s.state){
+    //         RemoveItems();
+    //     }
+    // }
 
-    public void Spider()
+    // public void Spider()
+    // {
+    //     State s = items[0];
+    //     if(s.state){
+    //         RemoveItems();
+    //     }
+    // }
+
+    // public void Butterfly()
+    // {
+    //     State s = items[0];
+    //     if(s.state){
+    //         RemoveItems();
+    //     }
+    // }
+
+    public void Villager()
     {
         State s = items[0];
         if(s.state){
@@ -73,6 +88,11 @@ public class StateMachine : MonoBehaviour
         }
 
         if(villager.name == "Spider" && items[0].state && !villager.state){
+            villager.GetComponent<DialogueTrigger>().ChangeDialogue();
+            villager.state = true;
+        }
+
+        if(villager.name == "Butterfly" && items[0].state && !villager.state){
             villager.GetComponent<DialogueTrigger>().ChangeDialogue();
             villager.state = true;
         }

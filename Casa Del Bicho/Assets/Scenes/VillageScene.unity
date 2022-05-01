@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.3391076, g: 0.37088078, b: 0.39035895, a: 1}
+  m_IndirectSpecularColor: {r: 0.33911175, g: 0.3708836, b: 0.3903603, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8831,7 +8831,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  interactIcon: {fileID: 21300000, guid: 534a174c1aa9c7946a693241d53b5e28, type: 3}
+  interactIcon: {fileID: 21300000, guid: 4f6ad9efd91660248bd31b7071223377, type: 3}
 --- !u!64 &555844185
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24011,7 +24011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameobject: {fileID: 1609790544}
   CamController: {fileID: 765573974}
-  crossHatch: {fileID: 2142025101}
+  customCursorIcon: {fileID: 2142025101}
   nameText: {fileID: 1609790543}
   dialogueText: {fileID: 1609790541}
 --- !u!4 &1621055981
@@ -25112,7 +25112,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  interactIcon: {fileID: 21300000, guid: 534a174c1aa9c7946a693241d53b5e28, type: 3}
+  interactIcon: {fileID: 21300000, guid: 4f6ad9efd91660248bd31b7071223377, type: 3}
 --- !u!114 &1700930964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28712,7 +28712,7 @@ MonoBehaviour:
           m_StringArgument: Talk
           m_BoolArgument: 1
         m_CallState: 2
-  interactIcon: {fileID: 21300000, guid: 534a174c1aa9c7946a693241d53b5e28, type: 3}
+  interactIcon: {fileID: 21300000, guid: 4f6ad9efd91660248bd31b7071223377, type: 3}
 --- !u!114 &2005879861
 MonoBehaviour:
   m_ObjectHideFlags: 0

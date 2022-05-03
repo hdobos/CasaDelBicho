@@ -8,8 +8,15 @@ public class StateMachine : MonoBehaviour
     public State villager;
     bool itemState = false;
 
-    private bool tiger, butterfly, spider;
+    private static bool tiger, butterfly, spider;
 
+    public GameObject[] fire;
+    public GameObject[] invisObjs;
+
+    // void Awake()
+    // {
+
+    // }
 
     bool CheckItemState()
     {
@@ -47,8 +54,19 @@ public class StateMachine : MonoBehaviour
 
     public void Tiger()
     {
-        State s = items[0];
-        if(s.state){
+        State s = items[0]; //roof
+        State s2 = items[1]; // matchstick
+
+        //checks to see if you have the matchstick
+        //if yes, end game
+        if(s2.state){
+            //end game code
+            foreach(GameObject obj in fire){
+                obj.SetActive(true);
+            }
+        }
+
+        else if(s.state){
             RemoveItems();
         }
     }
@@ -58,9 +76,13 @@ public class StateMachine : MonoBehaviour
         State s = items[0];
         if(s.state){
             RemoveItems();
+            invisObjs[0].SetActive(true); //activates bassinet
+            invisObjs[1].SetActive(true); //activates straw house
+            GameObject.FindGameObjectWithTag("DestroyedStraw").SetActive(false); //deactivates broken house
+
+            s.state = false; //so it doesn't call this again
         }
 
-        GameObject.FindGameObjectWithTag("Bassinet").SetActive(true);
     }
 
     public void Butterfly()
@@ -68,22 +90,30 @@ public class StateMachine : MonoBehaviour
         State s = items[0];
         if(s.state){
             RemoveItems();
-        }
+            invisObjs[0].SetActive(true); //paintbrush
+            invisObjs[1].SetActive(true); //cup house
+            GameObject.FindGameObjectWithTag("DestroyedCup").SetActive(false); //deactivates broken cup house
 
-        GameObject.FindGameObjectWithTag("Paintbrush").SetActive(true);
+            s.state = false; //disable if statement
+        }
     }
 
     public void BlueJay()
     {
-        if(tiger && spider && butterfly && !villager.state){
+
+     
+        if (tiger && butterfly && spider && !villager.state){
             villager.GetComponent<DialogueTrigger>().ChangeDialogue();
-            GameObject.FindGameObjectWithTag("MatchstickRecipe").SetActive(true);
+            invisObjs[0].SetActive(true);
             villager.state = true;
         }
     }
 
     void Update()
     {
+
+        BlueJay();
+
         if(villager.name == "Metalon" && CheckItemState() && !itemState){
             villager.GetComponent<DialogueTrigger>().ChangeDialogue();
             itemState = true;
@@ -93,20 +123,26 @@ public class StateMachine : MonoBehaviour
             villager.GetComponent<DialogueTrigger>().ChangeDialogue();
             villager.state = true;
             tiger = true;
+            
         }
 
         if(villager.name == "Spider" && items[0].state && !villager.state){
             villager.GetComponent<DialogueTrigger>().ChangeDialogue();
             villager.state = true;
             spider = true;
+            
         }
 
         if(villager.name == "Butterfly" && items[0].state && !villager.state){
             villager.GetComponent<DialogueTrigger>().ChangeDialogue();
             villager.state = true;
             butterfly = true;
+            
+
         }
-      
+
     }
+
+
 
 }

@@ -11,6 +11,8 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
+        //GameObject.FindGameObjectWithTag("Music").GetComponent<BackgroundMusic>().StopMusic();
+
         if(instance == null) instance = this;
         else{
             Destroy(gameObject);

@@ -16,6 +16,7 @@ public class TextFadeTrigger : MonoBehaviour
         if (player.gameObject.tag == "Player")
         {
             uiObject.SetActive(true);
+
           
         }
     }

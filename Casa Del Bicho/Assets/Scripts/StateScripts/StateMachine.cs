@@ -8,7 +8,7 @@ public class StateMachine : MonoBehaviour
     public State villager;
     bool itemState = false;
 
-    private bool tiger, butterfly, spider;
+    private static bool tiger, butterfly, spider;
 
     public GameObject[] fire;
     public GameObject[] invisObjs;
@@ -100,7 +100,9 @@ public class StateMachine : MonoBehaviour
 
     public void BlueJay()
     {
-        if(tiger && spider && butterfly && !villager.state){
+
+     
+        if (tiger && butterfly && spider && !villager.state){
             villager.GetComponent<DialogueTrigger>().ChangeDialogue();
             invisObjs[0].SetActive(true);
             villager.state = true;
@@ -109,6 +111,9 @@ public class StateMachine : MonoBehaviour
 
     void Update()
     {
+
+        BlueJay();
+
         if(villager.name == "Metalon" && CheckItemState() && !itemState){
             villager.GetComponent<DialogueTrigger>().ChangeDialogue();
             itemState = true;
@@ -118,20 +123,26 @@ public class StateMachine : MonoBehaviour
             villager.GetComponent<DialogueTrigger>().ChangeDialogue();
             villager.state = true;
             tiger = true;
+            
         }
 
         if(villager.name == "Spider" && items[0].state && !villager.state){
             villager.GetComponent<DialogueTrigger>().ChangeDialogue();
             villager.state = true;
             spider = true;
+            
         }
 
         if(villager.name == "Butterfly" && items[0].state && !villager.state){
             villager.GetComponent<DialogueTrigger>().ChangeDialogue();
             villager.state = true;
             butterfly = true;
+            
+
         }
-      
+
     }
+
+
 
 }

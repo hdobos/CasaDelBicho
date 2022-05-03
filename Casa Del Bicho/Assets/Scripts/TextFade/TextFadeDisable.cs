@@ -2,22 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TextFadeTrigger : MonoBehaviour
+public class TextFadeDisable : MonoBehaviour
 {
     public GameObject uiObject;
-
-    void Start()
-    {
-        uiObject.SetActive(false);
-    }
+    public GameObject trigger;
 
     void OnTriggerEnter(Collider player)
     {
         if (player.gameObject.tag == "Player")
         {
-            uiObject.SetActive(true);
 
-          
+            Destroy(trigger);
+            Destroy(uiObject);
+
+
         }
     }
 

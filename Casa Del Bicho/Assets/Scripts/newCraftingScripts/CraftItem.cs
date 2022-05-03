@@ -356,8 +356,8 @@ public class CraftItem : MonoBehaviour
             }
         }
 
-        string combinedRecipe = string.Join(",", itemRecipe);
-        print(combinedRecipe);
+        string combinedRecipe = string.Join(",", itemRecipe); //prints recipes in console
+        Debug.Log(combinedRecipe);
 
         //search for recipe
         _Item craftedItem = FindItem(combinedRecipe);
@@ -370,7 +370,7 @@ public class CraftItem : MonoBehaviour
 
             resultSlot.itemSprite = craftedItem.itemSprite;
             resultSlot.itemCount = 1;
-            craftedItem.state.state = true;
+            craftedItem.state.state = true; //state of item you crafted = true
 
             UpdateItems(craftingSlots);
             UpdateItems(new SlotContainer[] {resultSlot});

@@ -10,6 +10,8 @@ public class StateMachine : MonoBehaviour
 
     private bool tiger, butterfly, spider;
 
+    private GameObject[] fire;
+
 
     bool CheckItemState()
     {
@@ -47,9 +49,19 @@ public class StateMachine : MonoBehaviour
 
     public void Tiger()
     {
-        State s = items[0];
+        State s = items[0]; //roof
+        State s2 = items[1]; // matchstick
         if(s.state){
             RemoveItems();
+        }
+
+        if(s2.state){
+            //end game code
+            fire = GameObject.FindGameObjectsWithTag("FIRE");
+            foreach(GameObject obj in fire){
+                Debug.Log(obj);
+                obj.SetActive(true);
+            }
         }
     }
 
@@ -58,9 +70,11 @@ public class StateMachine : MonoBehaviour
         State s = items[0];
         if(s.state){
             RemoveItems();
+            GameObject.FindGameObjectWithTag("Bassinet").SetActive(true); //activates bassinet
+            GameObject.FindGameObjectWithTag("StrawHouse").SetActive(true); //activates straw house
+            GameObject.FindGameObjectWithTag("DestroyedStraw").SetActive(false); //deactivates broken house
         }
 
-        GameObject.FindGameObjectWithTag("Bassinet").SetActive(true);
     }
 
     public void Butterfly()
@@ -68,9 +82,10 @@ public class StateMachine : MonoBehaviour
         State s = items[0];
         if(s.state){
             RemoveItems();
+            GameObject.FindGameObjectWithTag("Paintbrush").SetActive(true);
+            GameObject.FindGameObjectWithTag("CupHouse").SetActive(true);
+            GameObject.FindGameObjectWithTag("DestroyedCup").SetActive(false);
         }
-
-        GameObject.FindGameObjectWithTag("Paintbrush").SetActive(true);
     }
 
     public void BlueJay()

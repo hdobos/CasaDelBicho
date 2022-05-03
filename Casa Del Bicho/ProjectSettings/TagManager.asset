@@ -8,6 +8,13 @@ TagManager:
   - Bassinet
   - Paintbrush
   - MatchstickRecipe
+  - StrawHouse
+  - CupHouse
+  - DestroyedStraw
+  - DestroyedCup
+  - Menu
+  - FIRE
+  - Music
   layers:
   - Default
   - TransparentFX

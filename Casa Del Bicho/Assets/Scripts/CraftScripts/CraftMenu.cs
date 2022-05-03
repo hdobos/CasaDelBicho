@@ -60,4 +60,8 @@ public class CraftMenu : MonoBehaviour
         GatherUI.SetActive(false);
         CraftUI.SetActive(true);
     }
+
+    public bool isCrafting(){
+        return Paused;
+    }
 }

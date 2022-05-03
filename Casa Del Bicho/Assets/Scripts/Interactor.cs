@@ -13,10 +13,16 @@ public class Interactor : MonoBehaviour
     public Sprite defaultIcon;
     public Sprite defaultInteractIcon;
 
+    //used for checking is menus are open
+    private PauseMenu p;
+    private CraftMenu c;
+
     // Start is called before the first frame update
     void Start()
     {
         interactImage.GetComponent<RectTransform>().localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        p = GameObject.FindGameObjectWithTag("Menu").GetComponent<PauseMenu>();
+        c = GameObject.FindGameObjectWithTag("Menu").GetComponent<CraftMenu>();
     }
 
     // Update is called once per frame
@@ -41,7 +47,7 @@ public class Interactor : MonoBehaviour
                     interactImage.sprite = defaultInteractIcon;
                 }
 
-                if(Input.GetMouseButtonDown(0) && interactable.interactionInProgress() == false){
+                if(Input.GetMouseButtonDown(0) && interactable.interactionInProgress() == false && p.IsGamePaused() == false && c.isCrafting() == false){
                     interactable.onInteract.Invoke();
                 }
             }

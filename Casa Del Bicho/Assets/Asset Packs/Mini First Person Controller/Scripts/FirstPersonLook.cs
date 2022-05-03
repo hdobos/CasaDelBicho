@@ -10,6 +10,7 @@ public class FirstPersonLook : MonoBehaviour
     Vector2 velocity;
     Vector2 frameVelocity;
 
+    private bool positionLocked = false;
 
     void Reset()
     {
@@ -23,10 +24,19 @@ public class FirstPersonLook : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    public void setPositionLocked(bool state){
+        positionLocked = state;
+    }
+
     void Update()
     {
+        
         // Get smooth velocity.
         Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+        // If in locked state, set total change of pos to 0
+        if(positionLocked){
+            mouseDelta = new Vector2(0,0);
+        }
         Vector2 rawFrameVelocity = Vector2.Scale(mouseDelta, Vector2.one * sensitivity);
         frameVelocity = Vector2.Lerp(frameVelocity, rawFrameVelocity, 1 / smoothing);
         velocity += frameVelocity;

@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class Interactor : MonoBehaviour
 {
-    public LayerMask interactableLayerMask = 6;
     Interactable interactable;
+
+    public LayerMask interactableLayerMask = 6;
     public Image interactImage;
     //public RectTransform iconTransform;
     public Sprite defaultIcon;
@@ -24,7 +25,7 @@ public class Interactor : MonoBehaviour
         RaycastHit hit;
 
         if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 20, interactableLayerMask)){
-            if(hit.collider.GetComponent<Interactable>() != false){
+            if(hit.collider.GetComponent<Interactable>()){
 
                 if(interactable == null || interactable.GetID() != hit.collider.GetComponent<Interactable>().GetID()){
                     interactable = hit.collider.GetComponent<Interactable>();
@@ -40,7 +41,7 @@ public class Interactor : MonoBehaviour
                     interactImage.sprite = defaultInteractIcon;
                 }
 
-                if(Input.GetKeyDown(KeyCode.F)){
+                if(Input.GetMouseButtonDown(0) && interactable.interactionInProgress() == false){
                     interactable.onInteract.Invoke();
                 }
             }

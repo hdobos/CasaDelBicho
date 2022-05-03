@@ -9,6 +9,7 @@ public class Interactable : MonoBehaviour
     public Sprite interactIcon;
     
     private static int totalIDs = 0;
+    private bool isInteracting = false;
     private int ID;
     
     // Start is called before the first frame update
@@ -21,4 +22,13 @@ public class Interactable : MonoBehaviour
     public int GetID(){
         return ID;
     }
+
+    public void setInteractingState(bool state){
+        isInteracting = state;
+    }
+
+    public bool interactionInProgress(){
+        return isInteracting;
+    }
 }
+

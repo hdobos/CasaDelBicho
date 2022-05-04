@@ -26,11 +26,19 @@ public class Interactor : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+
+        System.Console.WriteLine("BEFORE RAYCAST HIT ////////////////////");
+        Debug.LogError("BEFORE RAYCAST HIT ////////////////////");
+
         RaycastHit hit;
 
         if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 20, interactableLayerMask)){
+
+            System.Console.WriteLine("ENTERED PHYSICS RAYCAST////////////////////////////////////////////////////////");
+            Debug.LogError("ENTERED PHYSICS RAYCAST //////////////////////////////////////////////");
+
             if(hit.collider.GetComponent<Interactable>()){
 
                 if(interactable == null || interactable.GetID() != hit.collider.GetComponent<Interactable>().GetID()){

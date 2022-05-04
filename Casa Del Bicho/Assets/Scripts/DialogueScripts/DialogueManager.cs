@@ -20,8 +20,8 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-    public void SetNPC(GameObject charachter){
-        npc = charachter;
+    public void SetNPC(GameObject character){
+        npc = character;
     }
 
     public void StartDialogue(Dialogue d){

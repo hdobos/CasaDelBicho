@@ -18,6 +18,10 @@ TagManager:
   - CraftMenu
   - PauseMenu
   - test
+  - Tiger
+  - Bluejay
+  - Dialogue
+  - Background
   layers:
   - Default
   - TransparentFX

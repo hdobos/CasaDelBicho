@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StateMachine : MonoBehaviour
 {
@@ -64,11 +65,23 @@ public class StateMachine : MonoBehaviour
             foreach(GameObject obj in fire){
                 obj.SetActive(true);
             }
-        }
 
+            GameObject.FindGameObjectWithTag("Dialogue").SetActive(false);
+
+            invisObjs[0].SetActive(true);
+            StartCoroutine("WaitForSec");
+
+        }
         else if(s.state){
             RemoveItems();
         }
+    }
+
+    IEnumerator WaitForSec()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("EndScene");
+
     }
 
     public void Spider()
@@ -101,12 +114,17 @@ public class StateMachine : MonoBehaviour
     public void BlueJay()
     {
 
+        //State bluejay
+
+        GameObject.FindGameObjectWithTag("Bluejay").GetComponent<State>();
      
         if (tiger && butterfly && spider && !villager.state){
             villager.GetComponent<DialogueTrigger>().ChangeDialogue();
             invisObjs[0].SetActive(true);
             villager.state = true;
+            
         }
+
     }
 
     void Update()
